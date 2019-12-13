@@ -56,8 +56,10 @@ from CTFd.schemas.users import UserSchema
 
 auths_namespace = Namespace("auths",description="考虑如何登陆")
 
-@auths_namespace.route("/login",methods=["GET"])
-def login():
-    return {
-        "a":"b"
-    }
+@auths_namespace.route("")
+class AuthLogin(Resource):
+    @check_account_visibility
+    def get(self):
+        return {
+            "a":"a"
+        }
