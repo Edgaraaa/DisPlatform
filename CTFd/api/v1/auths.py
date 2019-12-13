@@ -54,9 +54,9 @@ from CTFd.schemas.submissions import SubmissionSchema
 from CTFd.schemas.awards import AwardSchema
 from CTFd.schemas.users import UserSchema
 
-auth_namespace = Namespace("auth",description="考虑如何登陆")
+auths_namespace = Namespace("auths",description="考虑如何登陆")
 
-@auth_namespace.route("/login",methods=["GET"])
+@auths_namespace.route("/login",methods=["GET"])
 def login():
     return {
         "a":"b"
