@@ -57,60 +57,7 @@ from CTFd.schemas.users import UserSchema
 auth_namespace = Namespace("auth",description="考虑如何登陆")
 
 @auth_namespace.route("/login",methods=["POST","GET"])
-@ratelimit(method="POST", limit=10, interval=5)
 def login():
-    errors = get_errors()
-    if request.method == "POST":
-        name = request.form["name"]
-
-        # Check if the user submitted an email address or a team name
-        if validators.validate_email(name) is True:
-            user = Users.query.filter_by(email=name).first()
-        else:
-            user = Users.query.filter_by(name=name).first()
-
-        if user:
-            if user and verify_password(request.form["password"], user.password):
-                session.regenerate()
-
-                login_user(user)
-                #log("logins", "[{date}] {ip} - {name} logged in")
-
-                db.session.close()
-                if request.args.get("next") and validators.is_safe_url(
-                    request.args.get("next")
-                ):
-                    return {
-                        "success":True,
-                        "next":request.args.get("next")
-                    }
-                return {
-                    "success":True,
-                    "next":"sss"
-                }
-
-            else:
-                # This user exists but the password is wrong
-                #log("logins", "[{date}] {ip} - submitted invalid password for {name}")
-                errors.append("Your username or password is incorrect")
-                db.session.close()
-                return {
-                    "success":False,
-                    "error":errors
-                }
-                
-        else:
-            # This user just doesn't exist
-            #log("logins", "[{date}] {ip} - submitted invalid account information")
-            errors.append("Your username or password is incorrect")
-            db.session.close()
-            return {
-                    "success":False,
-                    "error":errors
-                }
-    else:
-        db.session.close()
-        return {
-                    "success":False,
-                    "error":errors
-                }
+    return {
+        "a":"b"
+    }
