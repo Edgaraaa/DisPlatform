@@ -55,6 +55,13 @@ from CTFd.schemas.awards import AwardSchema
 from CTFd.schemas.users import UserSchema
 
 auth_namespace = Namespace("auth",description="考虑如何登陆")
+@auth_namespace.route("")
+class UserHello(Resource):
+    def get(self):
+        return {
+            "success":False,
+            "error":"hello"
+        }
 
 @auth_namespace.route("/login")
 class UserLogin(Resource):
