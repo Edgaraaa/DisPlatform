@@ -281,16 +281,28 @@ def login():
                 log("logins", "[{date}] {ip} - submitted invalid password for {name}")
                 errors.append("Your username or password is incorrect")
                 db.session.close()
-                return render_template("login.html", errors=errors)
+                #return render_template("login.html", errors=errors)
+                return {
+                    "success":False,
+                    "error":errors,
+                }
         else:
             # This user just doesn't exist
             log("logins", "[{date}] {ip} - submitted invalid account information")
             errors.append("Your username or password is incorrect")
             db.session.close()
-            return render_template("login.html", errors=errors)
+            #return render_template("login.html", errors=errors)
+            return {
+                    "success":False,
+                    "error":errors,
+                }
     else:
         db.session.close()
-        return render_template("login.html", errors=errors)
+        #return render_template("login.html", errors=errors)
+        return {
+                    "success":False,
+                    "error":errors,
+                }
 
 
 @auth.route("/oauth")
