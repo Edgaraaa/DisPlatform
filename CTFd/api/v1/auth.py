@@ -56,7 +56,7 @@ from CTFd.schemas.users import UserSchema
 
 auth_namespace = Namespace("auth",description="考虑如何登陆")
 
-@auth_namespace.route("/login",methods=["POST","GET"])
+@auth_namespace.route("/login",methods=["GET"])
 def login():
     return {
         "a":"b"
